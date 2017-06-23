@@ -4,7 +4,9 @@
             <span>Result per page</span>
         </div>
         <div class="fcb-right">
-            range
+            <button v-on:click="cantPage(10)">10</button>
+            <button v-on:click="cantPage(25)">25</button>
+            <button v-on:click="cantPage(50)">50</button>
         </div>
     </div>
 </template>
@@ -15,7 +17,12 @@ export default {
     return {
       msg: 'range per page',
     };
-},
+  },
+  methods: {
+    cantPage (r) {
+        this.$emit('registros', r)
+    }
+  }
 };
 </script>
 

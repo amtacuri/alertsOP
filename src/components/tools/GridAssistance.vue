@@ -129,6 +129,7 @@ a {
 }
 .fcb-grid {}
 .fcb-grid table { width: 100%; }
+.fcb-grid table thead tr th a span { text-transform: uppercase; font-size: 12px; color: #57585A; }
 .fcb-head-grid { display: block; clear: both; }
 .fcb-head-grid div { float: left; margin-right: 10px; }
 .fcb-head-grid div a { display: block; }

@@ -1,5 +1,14 @@
 {
-  "not_classified": "50",
-  "marking_identified": "25",
-  "marking_not_identified": "28"
+  "not_classified": {
+    "total": "5",
+    "status": "expired"
+  },
+  "marking_identified": {
+    "total": "3",
+    "status": "expired"
+  },
+  "marking_not_identified": {
+    "total": "2",
+    "status": "waiting"
+  }
 }
