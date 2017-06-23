@@ -1,26 +1,45 @@
 <template>
-  <div class="fcb-sku-in-transit">
-      <div class="fcb-wrap-body">
-          <h2>SKUs ordered without Country of Origin (COO)</h2>
-          <p>
-              Below are the products in transit to FedEx Cross Border pending Country of Origin review.
-              Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
-              through the <a href="">Country of Origin (CoO) Assistance Program</a>.
-          </p>
-          <range-page v-on:registros="loadDataTable"></range-page>
-          <div class="">
-              <data-table
+    <div class="fcb-sku-in-transit">
+        <div class="fcb-wrap-body">
+            <h2>SKUs ordered without Country of Origin (COO)</h2>
+            <p>
+            Below are the products in transit to FedEx Cross Border pending Country of Origin review.
+            Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
+            through the <a href="">Country of Origin (CoO) Assistance Program</a>.
+            </p>
+            <range-page v-on:registros="loadDataTable"></range-page>
+            <div class="">
+                <data-table
                 :config="table_fees.config"
                 :header="table_fees.fields"
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
-              </data-table>
-          </div>
-          <paginator></paginator>
-          <div>
-              <button>Reset</button>
-              <button v-on:click="modalCertify">Certify</button>
-          </div>
+                </data-table>
+            </div>
+            <paginator></paginator>
+            <div>
+                <button>Reset</button>
+                <button v-on:click="modalCertify">Certify</button>
+            </div>
+            <div class="ui dimmer modals page" v-bind:class="{ 'active': partnerKeyModalData.show, 'visible': partnerKeyModalData.show, 'transition': partnerKeyModalData.show }">
+                <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
+                    <div class="ui segment">
+                        <div class="header fcb_title">
+                            Please certify checked rows before moving on
+                        </div>
+                        <div>
+                            I certify that the Country of Origin I have entered for the
+                            Products(s) selected are true and accurate.
+                            I acknowledge that by selecting “Could not find”,
+                            I am canceling that Product from the selected order.
+                        </div>
+                        <div class="actions">
+                            <div class="ui button" @click="close()">Stay on page</div>
+                            <div class="ui button" @click="certifyRows()">Certify</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
       </div>
     </div>
 </template>
@@ -38,13 +57,16 @@ export default {
             affected_tables: {
                 table_fees: []
             },
+            partnerKeyModalData: {
+                show: false
+            },
             renderPaginator: [], // paginador
             table_fees: {
                 config: {
                     id: 'table_fees',
                     pagination: false,
                     indentifier: 'id_details' // campo de la tabla
-                  },
+                },
                 fields: [
                 {
                     label: '.',
@@ -92,45 +114,49 @@ export default {
                         dataStore: []
                     }
                 }
-          ],
-          dataStore: []
-        }
-    };
-  },
-  components: {
-    RangePage,
-    DataTable,
-    Paginator
-  },
-  mounted() {
-    this.getData()
-    // const self = this
-  },
-  methods: {
-    loadDataTable (val) {
-console.log(val)
+                ],
+                dataStore: []
+            }
+        };
+    },
+    components: {
+        RangePage,
+        DataTable,
+        Paginator
+    },
+    mounted() {
         this.getData()
-
+        // const self = this
     },
-    getData (reg) {
-        // if ( typeOf reg == "undefined") reg = 10
-        axios.get("/static/sku-in-transit.json")
-        .then((x) => {
-          this.table_fees.dataStore = x.data.items
-        //   console.log(x.data.countries.all)
-          this.table_fees.fields[6].custom.dataStore = x.data.countries.all
-        })
-    },
-    processChanges (table) {
-      if (table.id === 'table_fees')
-        this.affected_tables.table_fees = table.data
-
-    },
-    xuxa (evt, field, row) {
-      alert(row)
-    },
-    modalCertify (){}
-  }
+    methods: {
+        loadDataTable (val) {
+            console.log(val)
+            this.getData()
+        },
+        getData (reg) {
+            // if ( typeOf reg == "undefined") reg = 10
+            axios.get("/static/sku-in-transit.json")
+            .then((x) => {
+                this.table_fees.dataStore = x.data.items
+                //   console.log(x.data.countries.all)
+                this.table_fees.fields[6].custom.dataStore = x.data.countries.all
+            })
+        },
+        processChanges (table) {
+            if (table.id === 'table_fees')
+                this.affected_tables.table_fees = table.data
+        },
+        modalCertify (){
+            this.partnerKeyModalData.show = true
+        },
+        certifyRows () {
+            console.log('Certify Coo')
+        },
+        close () {
+            this.partnerKeyModalData.show = false
+            this.imageRowModal.show = false
+        },
+    }
 };
 </script>
 
