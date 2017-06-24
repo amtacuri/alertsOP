@@ -16,12 +16,17 @@
                 v-on:changes="processChanges">
                 </data-table>
             </div>
-            <paginator></paginator>
-            <div>
+            <ul class="fcb-paginator">
+                <li><div>PAGE:</div></li><li v-for="page in dataPaginator.pagesPaginator">
+                    <a v-if="page.activo == false" href="" v-on:click="loadPage(page.pag)">{{page.pag}}</a>
+                    <span v-else="page.activo">{{page.pag}}</span>
+                </li>
+            </ul>
+            <div class="ui fcb-wrap-buttons">
                 <button>Reset</button>
-                <button v-on:click="modalCertify">Certify</button>
+                <button v-on:click="certifyModal">Certify</button>
             </div>
-            <div class="ui dimmer modals page" v-bind:class="{ 'active': partnerKeyModalData.show, 'visible': partnerKeyModalData.show, 'transition': partnerKeyModalData.show }">
+            <div class="ui dimmer modals page" v-bind:class="{ 'active': agreeCertifyModal.show, 'visible': agreeCertifyModal.show, 'transition': agreeCertifyModal.show }">
                 <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
                     <div class="ui segment">
                         <div class="header fcb_title">
@@ -57,10 +62,58 @@ export default {
             affected_tables: {
                 table_fees: []
             },
-            partnerKeyModalData: {
+            agreeCertifyModal: {
                 show: false
             },
-            renderPaginator: [], // paginador
+            imageRowModal: {
+                show: false
+            },
+            dataPaginator: {
+                totalRows: 100,
+                cantRowsPage: 10,
+                labelPage: 0,
+                pagesPaginator: [
+                {
+                    pag: 1,
+                    activo: true
+                },
+                {
+                    pag: 2,
+                    activo: false
+                },
+                {
+                    pag: 3,
+                    activo: false
+                },
+                {
+                    pag: 4,
+                    activo: false
+                },{
+                    pag: 5,
+                    activo: false
+                },
+                {
+                    pag: 6,
+                    activo: false
+                },
+                {
+                    pag: 7,
+                    activo: false
+                },
+                {
+                    pag: 8,
+                    activo: false
+                },
+                {
+                    pag: 9,
+                    activo: false
+                },
+                {
+                    pag: 10,
+                    activo: false
+                }
+                ]
+            }, // paginador
             table_fees: {
                 config: {
                     id: 'table_fees',
@@ -140,22 +193,56 @@ export default {
                 this.table_fees.dataStore = x.data.items
                 //   console.log(x.data.countries.all)
                 this.table_fees.fields[6].custom.dataStore = x.data.countries.all
+                this.dataPaginator.totalRows = x.data.total_row;
+                this.renderPaginator()
             })
         },
         processChanges (table) {
             if (table.id === 'table_fees')
                 this.affected_tables.table_fees = table.data
         },
-        modalCertify (){
-            this.partnerKeyModalData.show = true
+        certifyModal (){
+            this.agreeCertifyModal.show = true
         },
         certifyRows () {
             console.log('Certify Coo')
+            console.log(this.affected_tables.table_fees)
+            // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
+
+            const data = {
+                'user_id': 0,
+                'type': '',
+                'items': self.affected_tables.table_merchantRates
+            }
+            axios.post(self.apiUrl + 'http://customertools.bongous.dev/alerts_functions.php?oper=certified', data)
+
+            // Params: user - id del Usuario logueado
+            // type - (MI = Marking Identified, MN = Marking Not Identified)
+            // items - Array de items
+            //   country     - string
+            //   id_details  - int
+            //   sku         - string
+            //   multi_coo   - Boolean
         },
         close () {
-            this.partnerKeyModalData.show = false
+            this.agreeCertifyModal.show = false
             this.imageRowModal.show = false
         },
+        renderPaginator () {
+            console.log("rendePaginator()")
+            this.dataPaginator.labelPage = Math.ceil(this.dataPaginator.totalRows / this.dataPaginator.cantRowsPage)
+            console.log('labelPage:', this.dataPaginator.labelPage)
+            console.log(parseInt(this.dataPaginator.labelPage))
+            for ( var i = 1; i <= parseInt(this.dataPaginator.labelPage); i++ ) {
+                console.log('i =', i)
+                this.dataPaginator.pagesPaginator.pag(i)
+            }
+            console.log("paginas:", this.dataPaginator.pagesPaginator)
+            // this.dataPaginator.pagesPaginator: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        },
+        loadPage () {
+
+        }
     }
 };
 </script>
@@ -170,4 +257,54 @@ a { text-decoration: underline; font-weight: bolder; }
 
 .fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 805px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
+
+.fcb-paginator {
+    display: block;
+    text-align: center;
+    list-style: none;
+    clear: both;
+    margin: 20px auto;
+    width: auto;
+    min-height: 40px;
+}
+.fcb-paginator li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.fcb-paginator li a {
+    float: left;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background: #f1f1f1;
+    border-radius: 10px;
+    color: #999;
+    line-height: 20px;
+    font-weight: normal;
+}
+.fcb-paginator li a:hover {
+    background: purple;
+    color: white;
+    font-weight: normal;
+}
+.fcb-paginator li span {
+    float: left;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background: purple;
+    border-radius: 10px;
+    color: white;
+    font-weight: normal;
+}
+.fcb-paginator li div {
+    float: left;
+    display: block;
+    margin-top: -10px;
+    font-weight: normal;
+}
+.fcb-wrap-buttons {
+    display: block;
+    clear: both;
+}
 </style>
