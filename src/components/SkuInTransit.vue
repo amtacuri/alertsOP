@@ -29,19 +29,23 @@
             </div>
             <div class="ui dimmer modals page" v-bind:class="{ 'active': agreeCertifyModal.show, 'visible': agreeCertifyModal.show, 'transition': agreeCertifyModal.show }">
                 <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
-                    <div class="ui segment">
-                        <div class="header fcb_title">
-                            Please certify checked rows before moving on
+                    <div class="ui segment ui center aligned segment ">
+                        <div class="header fcb_title ui header">
+                            <h4> Please certify checked rows before moving on </h4>
                         </div>
-                        <div>
-                            I certify that the Country of Origin I have entered for the
-                            Products(s) selected are true and accurate.
-                            I acknowledge that by selecting “Could not find”,
-                            I am canceling that Product from the selected order.
+                        <div class="ui hidden divider"></div>
+                        <div >
+                            <p>
+                                I certify that the Country of Origin I have entered for the
+                                Products(s) selected are true and accurate.     
+                                I acknowledge that by selecting “Could not find”,
+                                I am canceling that Product from the selected order.
+                            </p>
                         </div>
-                        <div class="actions">
-                            <div class="ui button" @click="close()">Stay on page</div>
-                            <div class="ui button" @click="certifyRows()">Certify</div>
+                        <div class="ui hidden divider"></div>
+                        <div class="actions ">
+                            <div class="ui basic purple button" @click="close()">Stay on page</div>
+                            <div class="ui purple button" @click="certifyRows()">Certify</div>
                         </div>
                     </div>
                 </div>
@@ -326,5 +330,5 @@ a { text-decoration: underline; font-weight: bolder; }
     display: block;
     clear: both;
 }
-
+    
 </style>

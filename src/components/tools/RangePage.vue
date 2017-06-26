@@ -8,9 +8,6 @@
             <button v-on:click="cantPage(25)">25</button>
             <button v-on:click="cantPage(50)">50</button>
         </div>
-        <div class="ui segment">
-          <div class="ui range" id="range-1"></div>
-        </div>
     </div>
 </template>
 <script>
@@ -27,20 +24,8 @@ export default {
     }
   }
 };
-
-
-$(document).ready(function() {
-
-  $('#range-1').range({
-    min: 0,
-    max: 10,
-    start: 5
-  });
-  
-  
-});
-
 </script>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {

@@ -109,4 +109,5 @@ export default {
 .countRed{ color: white; background: red; padding: 2px 8px; border-radius: 25px;font-size: 11px; }
 .comuntOrange{color: white; background: orange; padding: 2px 8px; border-radius: 25px;font-size: 11px;}
 .countGrey{color: #000; background: #f4f4f4; padding: 2px 8px; border-radius: 25px;font-size: 11px;}
+.ui.sortable.table thead th.sorted{text-transform: uppercase;}
 </style>
