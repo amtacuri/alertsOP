@@ -65,11 +65,11 @@ export default {
       }
   },
   mounted() {
-    console.log('print gettotals');
+    // console.log('print gettotals');
     axios.get("/static/assistance-gettotals.json")
     .then((x) => {
       this.totals = x.data;
-      console.log(x.data);
+    //   console.log(x.data);
     });
   },
   methods: {

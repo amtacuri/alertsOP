@@ -18,8 +18,8 @@
             </div>
             <ul class="fcb-paginator">
                 <li><div>PAGE:</div></li><li v-for="page in dataPaginator.pagesPaginator">
-                    <a v-if="page.activo == false" href="" v-on:click="loadPage(page.pag)">{{page.pag}}</a>
-                    <span v-else="page.activo">{{page.pag}}</span>
+                    <a v-if="page[1] == 'false'" href="" v-on:click="loadPage()">{{page[0]}}</a>
+                    <span v-else="page][1]">{{page[0]}}</span>
                 </li>
             </ul>
             <div class="ui fcb-wrap-buttons">
@@ -72,47 +72,7 @@ export default {
                 totalRows: 100,
                 cantRowsPage: 10,
                 labelPage: 0,
-                pagesPaginator: [
-                {
-                    pag: 1,
-                    activo: true
-                },
-                {
-                    pag: 2,
-                    activo: false
-                },
-                {
-                    pag: 3,
-                    activo: false
-                },
-                {
-                    pag: 4,
-                    activo: false
-                },{
-                    pag: 5,
-                    activo: false
-                },
-                {
-                    pag: 6,
-                    activo: false
-                },
-                {
-                    pag: 7,
-                    activo: false
-                },
-                {
-                    pag: 8,
-                    activo: false
-                },
-                {
-                    pag: 9,
-                    activo: false
-                },
-                {
-                    pag: 10,
-                    activo: false
-                }
-                ]
+                pagesPaginator: []
             }, // paginador
             table_fees: {
                 config: {
@@ -233,20 +193,20 @@ export default {
             this.imageRowModal.show = false
         },
         renderPaginator () {
-            console.log("rendePaginator()")
             this.dataPaginator.labelPage = Math.ceil(this.dataPaginator.totalRows / this.dataPaginator.cantRowsPage)
-            console.log('labelPage:', this.dataPaginator.labelPage)
-            console.log(parseInt(this.dataPaginator.labelPage))
-            for ( var i = 1; i <= parseInt(this.dataPaginator.labelPage); i++ ) {
-                console.log('i =', i)
-                this.dataPaginator.pagesPaginator.pag(i)
+            var arr = []
+            var arr2 = []
+            for ( var i = 1; i <= this.dataPaginator.labelPage; i++ ) {
+                if (i === 1){
+                    this.dataPaginator.pagesPaginator[i-1] = [i, "true"]
+                } else {
+                    this.dataPaginator.pagesPaginator[i-1] = [i, "false"]
+                }
+                
             }
-            console.log("paginas:", this.dataPaginator.pagesPaginator)
-            // this.dataPaginator.pagesPaginator: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+            console.log(this.dataPaginator.pagesPaginator)
         },
-        loadPage () {
-
-        }
+        loadPage () {}
     }
 };
 </script>
