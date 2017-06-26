@@ -15,11 +15,28 @@
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
                 </data-table>
+                  <tfoot>
+                    <tr><th colspan="3">
+                      <div class="ui right floated pagination menu">
+                        <a class="icon item">
+                          <i class="left chevron icon"></i>
+                        </a>
+                        <a class="item">1</a>
+                        <a class="item">2</a>
+                        <a class="item">3</a>
+                        <a class="item">4</a>
+                        <a class="icon item">
+                          <i class="right chevron icon"></i>
+                        </a>
+                      </div>
+                    </th>
+                  </tr>
+                </tfoot>
             </div>
             <paginator></paginator>
-            <div>
-                <button>Reset</button>
-                <button v-on:click="modalCertify">Certify</button>
+            <div class="contButton">
+                <button class="large ui purple basic button">Reset</button>
+                <button v-on:click="modalCertify" class="ui purple button">Certify</button>
             </div>
             <div class="ui dimmer modals page" v-bind:class="{ 'active': partnerKeyModalData.show, 'visible': partnerKeyModalData.show, 'transition': partnerKeyModalData.show }">
                 <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
@@ -170,4 +187,19 @@ a { text-decoration: underline; font-weight: bolder; }
 
 .fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 805px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
+
+.contButton{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.ui.purple.button{
+    background: #4d148c;
+    padding: 11px 70px;
+}
+.ui.basic.purple.button, .ui.basic.purple.buttons .button{
+    box-shadow: 0 0 0 1px #4d148c inset!important;
+    color: #4d148c !important;
+    padding: 10px 70px;
+}
 </style>

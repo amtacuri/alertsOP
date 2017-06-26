@@ -374,7 +374,6 @@ th.fcb_title{
   border-width: thin;
   border-color: silver;
   vertical-align: middle;
-  width: 100px;
   height: 30px;
 }
 
