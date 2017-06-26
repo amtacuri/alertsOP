@@ -7,7 +7,14 @@
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
-            <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
+            <div class="fcb-range">
+                <div class="fcb-left">
+                    <span>Result per page</span>
+                </div>
+                <div class="fcb-right">
+                    <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
+                </div>
+            </div>
             <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
@@ -290,5 +297,10 @@ a { text-decoration: underline; font-weight: bolder; }
     display: block;
     clear: both;
 }
+.fcb-range { display: block; min-height: 70px; border-top: 1px solid #CCC; padding: 10px; }
+.fcb-left { float: left; }
+.fcb-left span { text-transform: uppercase; font-size: 11px; font-weight: bolder; letter-spacing: 1px; color: #57585A; }
+.fcb-right { float: right; text-align: right; }
+.fcb-range .fcb-right { width: 75%; display: block; }
 
 </style>
