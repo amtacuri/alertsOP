@@ -16,24 +16,24 @@
             </li>
             <li>
 
-                <div class="fcb-more fcb-tree" v-on:click="treeShow = !treeShow">Assistance Program <span>{{ total }}</span></div>
+                <div class="fcb-more fcb-tree" v-on:click="treeShow = !treeShow">Assistance Program <span class="fcb-count countRed">{{ total }}</span></div>
                 <ul v-show="treeShow">
                     <li>
                         <div class="fcb-tree fcb-identified">
                             <router-link class="sub-item" to="marking-identified">Marking identified</router-link>
-                            <span class="fcb-count">{{totals.marking_identified}}</span>
+                            <span class="fcb-count countRed">{{totals.marking_identified.total}}</span>
                         </div>
                     </li>
                     <li>
                         <div class="fcb-tree fcb-not-identified">
                             <router-link class="sub-item" to="marking-not-identified">Marking not identified</router-link>
-                            <span class="fcb-count">{{totals.marking_not_identified}}</span>
+                            <span class="fcb-count comuntOrange">{{totals.marking_not_identified.total }}</span>
                         </div>
                     </li>
                     <li>
                         <div class="fcb-tree fcb-history">
                             <router-link class="sub-item" to="history">History</router-link>
-                            <span class="fcb-count">400</span>
+                            <span class="fcb-count countGrey">400</span>
                         </div>
                     </li>
                 </ul>
@@ -95,8 +95,8 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-
-.fcb-sidebar { width: 180px; float: left; text-align:left; }
+.ui.table {font-size: 10px;}
+.fcb-sidebar { width: 190px; float: left; text-align:left; }
 .fcb-sidebar-title { font-size: 14px; }
 .fcb-sidebar ul { list-style: none; margin: 0; padding: 0; text-align: left;}
 .fcb-tree { border-bottom: 1px solid #CCC; padding: 5px 0px 5px 10px; }
@@ -105,4 +105,8 @@ export default {
 .fcb-sidebar ul li a { color: #57585A;  text-decoration: none; }
 /*.fcb-sidebar li ul li { padding-left: 0; }*/
 .sub-item { font-size: 11px; }
+.fcb-count{ float: right;}
+.countRed{ color: white; background: red; padding: 2px 8px; border-radius: 25px;font-size: 11px; }
+.comuntOrange{color: white; background: orange; padding: 2px 8px; border-radius: 25px;font-size: 11px;}
+.countGrey{color: #000; background: #f4f4f4; padding: 2px 8px; border-radius: 25px;font-size: 11px;}
 </style>

@@ -14,17 +14,18 @@
                 :header="table_fees.fields"
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
-                </data-table>
+                </data-table>   
             </div>
+
             <ul class="fcb-paginator">
                 <li><div>PAGE:</div></li><li v-for="page in dataPaginator.pagesPaginator">
                     <a v-if="page[1] == 'false'" href="" v-on:click="loadPage()">{{page[0]}}</a>
                     <span v-else="page][1]">{{page[0]}}</span>
                 </li>
             </ul>
-            <div class="ui fcb-wrap-buttons">
-                <button>Reset</button>
-                <button v-on:click="certifyModal">Certify</button>
+            <div class="ui fcb-wrap-buttons contButton">
+                <button class="ui basic purple button">Reset</button>
+                <button class="ui purple button" v-on:click="certifyModal">Certify</button>
             </div>
             <div class="ui dimmer modals page" v-bind:class="{ 'active': agreeCertifyModal.show, 'visible': agreeCertifyModal.show, 'transition': agreeCertifyModal.show }">
                 <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
@@ -219,9 +220,23 @@ h2 { color: #4d148c; font-size: 16px; font-weight: bold; }
 p, a { color: #57585A; }
 a { text-decoration: underline; font-weight: bolder; }
 
-.fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 805px; }
+.fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 795px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
 
+.contButton{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.ui.purple.button{
+    background: #4d148c;
+    padding: 11px 100px;
+}
+.ui.basic.purple.button, .ui.basic.purple.buttons .button{
+    box-shadow: 0 0 0 1px #4d148c inset!important;
+    color: #4d148c !important;
+    padding: 10px 100px;
+}
 .fcb-paginator {
     display: block;
     text-align: center;
@@ -271,4 +286,5 @@ a { text-decoration: underline; font-weight: bolder; }
     display: block;
     clear: both;
 }
+
 </style>

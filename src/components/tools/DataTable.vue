@@ -58,7 +58,7 @@
               <template v-if="field.type">
                 <template v-if="field.type === 'checkbox'">
                   <td>
-                    <div class="ui toggle checkbox">
+                    <div class="ui checkbox">
                       <template v-if="parseInt(row[field.field])">
                         <input type="checkbox" checked name="public" id="" v-on:change="cell($event, '', row, field.field, field.type)"><label></label>
                       </template>
@@ -374,7 +374,6 @@ th.fcb_title{
   border-width: thin;
   border-color: silver;
   vertical-align: middle;
-  width: 100px;
   height: 30px;
 }
 
