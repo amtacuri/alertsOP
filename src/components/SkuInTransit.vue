@@ -14,7 +14,7 @@
                 <div class="fcb-right">
                     <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true"></vue-slider>
                 </div>
-            </div>    
+            </div>
             <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
@@ -152,7 +152,6 @@ export default {
     },
     methods: {
         loadDataTable (val) {
-            // console.log(val)
             this.getData()
         },
         getData (reg) {
@@ -164,7 +163,6 @@ export default {
             axios.get("/static/sku-in-transit.json")
             .then((x) => {
                 this.table_fees.dataStore = x.data.items
-                //   console.log(x.data.countries.all)
                 this.table_fees.fields[6].custom.dataStore = x.data.countries.all
                 this.dataPaginator.totalRows = x.data.total_row;
                 this.renderPaginator()
@@ -178,7 +176,6 @@ export default {
             this.agreeCertifyModal.show = true
         },
         certifyRows () {
-            // console.log('Certify Coo')
             // console.log(this.affected_tables.table_fees)
             // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
             const params = {
@@ -213,7 +210,6 @@ export default {
                 }
 
             }
-            // console.log(this.dataPaginator.pagesPaginator)
         },
         loadPage () {}
     }
