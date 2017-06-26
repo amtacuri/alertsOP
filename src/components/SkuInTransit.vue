@@ -14,24 +14,7 @@
                 :header="table_fees.fields"
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
-                </data-table>
-                  <tfoot>
-                    <tr><th colspan="3">
-                      <div class="ui right floated pagination menu">
-                        <a class="icon item">
-                          <i class="left chevron icon"></i>
-                        </a>
-                        <a class="item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
-                          <i class="right chevron icon"></i>
-                        </a>
-                      </div>
-                    </th>
-                  </tr>
-                </tfoot>
+                </data-table>   
             </div>
 
             <ul class="fcb-paginator">
@@ -40,9 +23,9 @@
                     <span v-else="page.activo">{{page.pag}}</span>
                 </li>
             </ul>
-            <div class="ui fcb-wrap-buttons">
-                <button>Reset</button>
-                <button v-on:click="certifyModal">Certify</button>
+            <div class="ui fcb-wrap-buttons contButton">
+                <button class="ui basic purple button">Reset</button>
+                <button class="ui purple button" v-on:click="certifyModal">Certify</button>
             </div>
             <div class="ui dimmer modals page" v-bind:class="{ 'active': agreeCertifyModal.show, 'visible': agreeCertifyModal.show, 'transition': agreeCertifyModal.show }">
                 <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
@@ -277,7 +260,7 @@ h2 { color: #4d148c; font-size: 16px; font-weight: bold; }
 p, a { color: #57585A; }
 a { text-decoration: underline; font-weight: bolder; }
 
-.fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 805px; }
+.fcb-sku-in-transit { border-left: 1px solid black; float: right; width: 795px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
 
 .contButton{
@@ -287,12 +270,12 @@ a { text-decoration: underline; font-weight: bolder; }
 }
 .ui.purple.button{
     background: #4d148c;
-    padding: 11px 70px;
+    padding: 11px 100px;
 }
 .ui.basic.purple.button, .ui.basic.purple.buttons .button{
     box-shadow: 0 0 0 1px #4d148c inset!important;
     color: #4d148c !important;
-    padding: 10px 70px;
+    padding: 10px 100px;
 }
 .fcb-paginator {
     display: block;
@@ -343,4 +326,5 @@ a { text-decoration: underline; font-weight: bolder; }
     display: block;
     clear: both;
 }
+
 </style>
