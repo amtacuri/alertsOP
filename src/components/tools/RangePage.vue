@@ -29,16 +29,16 @@ export default {
 };
 
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
-  $('#range-1').range({
-    min: 0,
-    max: 10,
-    start: 5
-  });
-  
-  
-});
+//   $('#range-1').range({
+//     min: 0,
+//     max: 10,
+//     start: 5
+//   });
+
+
+// });
 
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

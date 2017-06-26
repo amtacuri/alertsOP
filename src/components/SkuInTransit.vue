@@ -7,7 +7,7 @@
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
-            <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true"></vue-slider>
+            <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
             <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
@@ -208,7 +208,10 @@ export default {
             }
             // console.log(this.dataPaginator.pagesPaginator)
         },
-        loadPage () {}
+        loadPage () {},
+        changeInterval(e) {
+            console.log('this callback', e);
+        }
     }
 };
 </script>
