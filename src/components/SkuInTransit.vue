@@ -12,7 +12,7 @@
                     <span>Result per page</span>
                 </div>
                 <div class="fcb-right">
-                    <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true"></vue-slider>
+                    <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
                 </div>
             </div>
             <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
@@ -211,7 +211,10 @@ export default {
 
             }
         },
-        loadPage () {}
+        loadPage () {},
+        changeInterval(e) {
+            console.log('this callback', e);
+        }
     }
 };
 </script>
