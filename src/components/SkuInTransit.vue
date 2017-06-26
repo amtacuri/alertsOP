@@ -188,6 +188,10 @@ export default {
         },
         getData (reg) {
             // if ( typeOf reg == "undefined") reg = 10
+            const params = {
+                'page': 1,
+                'cant_items': 10
+            }
             axios.get("/static/sku-in-transit.json")
             .then((x) => {
                 this.table_fees.dataStore = x.data.items
@@ -208,13 +212,13 @@ export default {
             console.log('Certify Coo')
             console.log(this.affected_tables.table_fees)
             // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
-
-            const data = {
-                'user_id': 0,
+            const params = {
+                'user_id': '',
                 'type': '',
-                'items': self.affected_tables.table_merchantRates
+                'items': self.affected_tables.table_fees
             }
-            axios.post(self.apiUrl + 'http://customertools.bongous.dev/alerts_functions.php?oper=certified', data)
+
+            axios.post(self.apiUrl + 'http://customertools.bongous.dev/alerts_functions.php?oper=certified', params)
 
             // Params: user - id del Usuario logueado
             // type - (MI = Marking Identified, MN = Marking Not Identified)
