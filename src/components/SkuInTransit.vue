@@ -14,7 +14,7 @@
                 :header="table_fees.fields"
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
-                </data-table>   
+                </data-table>
             </div>
 
             <ul class="fcb-paginator">
@@ -144,7 +144,7 @@ export default {
     },
     methods: {
         loadDataTable (val) {
-            console.log(val)
+            // console.log(val)
             this.getData()
         },
         getData (reg) {
@@ -170,8 +170,8 @@ export default {
             this.agreeCertifyModal.show = true
         },
         certifyRows () {
-            console.log('Certify Coo')
-            console.log(this.affected_tables.table_fees)
+            // console.log('Certify Coo')
+            // console.log(this.affected_tables.table_fees)
             // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
             const params = {
                 'user_id': '',
@@ -203,9 +203,9 @@ export default {
                 } else {
                     this.dataPaginator.pagesPaginator[i-1] = [i, "false"]
                 }
-                
+
             }
-            console.log(this.dataPaginator.pagesPaginator)
+            // console.log(this.dataPaginator.pagesPaginator)
         },
         loadPage () {}
     }
