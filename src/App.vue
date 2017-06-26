@@ -21,13 +21,13 @@
                     <li>
                         <div class="fcb-tree fcb-identified">
                             <router-link class="sub-item" to="marking-identified">Marking identified</router-link>
-                            <span class="fcb-count countRed">{{totals.marking_identified.total}}</span>
+                            <span class="fcb-count countRed">{{ this.mi }}</span>
                         </div>
                     </li>
                     <li>
                         <div class="fcb-tree fcb-not-identified">
                             <router-link class="sub-item" to="marking-not-identified">Marking not identified</router-link>
-                            <span class="fcb-count comuntOrange">{{totals.marking_not_identified.total }}</span>
+                            <span class="fcb-count comuntOrange">{{ this.mni }}</span>
                         </div>
                     </li>
                     <li>
@@ -50,26 +50,29 @@
 <script type="text/javascript">
 import axios from 'axios';
 export default {
-  name: 'app',
-  data() {
-      return {
-          treeShow: false,
-          totals: [],
-          totSum: 0
-
-      }
-  },
+    name: 'app',
+    data() {
+        return {
+            treeShow: false,
+            totals: [],
+            totSum: 0,
+            mi: 0,
+            mni: 0
+        }
+    },
   computed: {
       total: function(){
-          return parseInt(this.totals.marking_identified)  + parseInt(this.totals.marking_not_identified)
+          return parseInt(this.mi) + parseInt(this.mni)
       }
   },
   mounted() {
-    console.log('print gettotals');
+    // console.log('print gettotals');
     axios.get("/static/assistance-gettotals.json")
     .then((x) => {
-      this.totals = x.data;
-      console.log(x.data);
+      this.totals = x.data
+      this.mi = x.data.marking_identified.total
+      this.mni = x.data.marking_not_identified.total
+
     });
   },
   methods: {

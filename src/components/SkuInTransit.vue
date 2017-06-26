@@ -7,20 +7,28 @@
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
-            <range-page v-on:registros="loadDataTable"></range-page>
+            <div class="fcb-range">
+                <div class="fcb-left">
+                    <span>Result per page</span>
+                </div>
+                <div class="fcb-right">
+                    <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
+                </div>
+            </div>
+            <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
                 :config="table_fees.config"
                 :header="table_fees.fields"
                 :data="table_fees.dataStore"
                 v-on:changes="processChanges">
-                </data-table>   
+                </data-table>
             </div>
 
             <ul class="fcb-paginator">
                 <li><div>PAGE:</div></li><li v-for="page in dataPaginator.pagesPaginator">
-                    <a v-if="page.activo == false" href="" v-on:click="loadPage(page.pag)">{{page.pag}}</a>
-                    <span v-else="page.activo">{{page.pag}}</span>
+                    <a v-if="page[1] == 'false'" href="" v-on:click="loadPage()">{{page[0]}}</a>
+                    <span v-else="page][1]">{{page[0]}}</span>
                 </li>
             </ul>
             <div class="ui fcb-wrap-buttons contButton">
@@ -55,7 +63,7 @@
 </template>
 
 <script>
-import RangePage from '@/components/tools/RangePage';
+import vueSlider from 'vue-slider-component'
 import axios from 'axios';
 import DataTable from '@/components/tools/DataTable'
 import Paginator from '@/components/tools/Paginator'
@@ -77,47 +85,7 @@ export default {
                 totalRows: 100,
                 cantRowsPage: 10,
                 labelPage: 0,
-                pagesPaginator: [
-                {
-                    pag: 1,
-                    activo: true
-                },
-                {
-                    pag: 2,
-                    activo: false
-                },
-                {
-                    pag: 3,
-                    activo: false
-                },
-                {
-                    pag: 4,
-                    activo: false
-                },{
-                    pag: 5,
-                    activo: false
-                },
-                {
-                    pag: 6,
-                    activo: false
-                },
-                {
-                    pag: 7,
-                    activo: false
-                },
-                {
-                    pag: 8,
-                    activo: false
-                },
-                {
-                    pag: 9,
-                    activo: false
-                },
-                {
-                    pag: 10,
-                    activo: false
-                }
-                ]
+                pagesPaginator: []
             }, // paginador
             table_fees: {
                 config: {
@@ -178,7 +146,7 @@ export default {
         };
     },
     components: {
-        RangePage,
+        vueSlider,
         DataTable,
         Paginator
     },
@@ -188,7 +156,7 @@ export default {
     },
     methods: {
         loadDataTable (val) {
-            console.log(val)
+            // console.log(val)
             this.getData()
         },
         getData (reg) {
@@ -214,8 +182,8 @@ export default {
             this.agreeCertifyModal.show = true
         },
         certifyRows () {
-            console.log('Certify Coo')
-            console.log(this.affected_tables.table_fees)
+            // console.log('Certify Coo')
+            // console.log(this.affected_tables.table_fees)
             // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
             const params = {
                 'user_id': '',
@@ -238,19 +206,22 @@ export default {
             this.imageRowModal.show = false
         },
         renderPaginator () {
-            console.log("rendePaginator()")
             this.dataPaginator.labelPage = Math.ceil(this.dataPaginator.totalRows / this.dataPaginator.cantRowsPage)
-            console.log('labelPage:', this.dataPaginator.labelPage)
-            console.log(parseInt(this.dataPaginator.labelPage))
-            for ( var i = 1; i <= parseInt(this.dataPaginator.labelPage); i++ ) {
-                console.log('i =', i)
-                this.dataPaginator.pagesPaginator.pag(i)
-            }
-            console.log("paginas:", this.dataPaginator.pagesPaginator)
-            // this.dataPaginator.pagesPaginator: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-        },
-        loadPage () {
+            var arr = []
+            var arr2 = []
+            for ( var i = 1; i <= this.dataPaginator.labelPage; i++ ) {
+                if (i === 1){
+                    this.dataPaginator.pagesPaginator[i-1] = [i, "true"]
+                } else {
+                    this.dataPaginator.pagesPaginator[i-1] = [i, "false"]
+                }
 
+            }
+            // console.log(this.dataPaginator.pagesPaginator)
+        },
+        loadPage () {},
+        changeInterval(e) {
+            console.log('this callback', e);
         }
     }
 };
@@ -330,5 +301,10 @@ a { text-decoration: underline; font-weight: bolder; }
     display: block;
     clear: both;
 }
-    
+.fcb-range { display: block; min-height: 70px; border-top: 1px solid #CCC; padding: 10px; }
+.fcb-left { float: left; }
+.fcb-left span { text-transform: uppercase; font-size: 11px; font-weight: bolder; letter-spacing: 1px; color: #57585A; }
+.fcb-right { float: right; text-align: right; }
+.fcb-range .fcb-right { width: 75%; display: block; }
+
 </style>
