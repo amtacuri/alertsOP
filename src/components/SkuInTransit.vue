@@ -7,7 +7,7 @@
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
-            <vue-slider ref="slider" interval=50 max=500 show=true tooltip="always" piecewise="true"></vue-slider>
+            <vue-slider ref="slider" interval="50" max="500" show="true" tooltip="always" piecewise="true"></vue-slider>
             <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
