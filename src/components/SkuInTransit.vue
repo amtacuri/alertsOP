@@ -300,6 +300,7 @@ a { text-decoration: underline; font-weight: bolder; }
 .fcb-wrap-buttons {
     display: block;
     clear: both;
+    margin-bottom: 50px;
 }
 .fcb-range { display: block; min-height: 70px; border-top: 1px solid #CCC; padding: 10px; }
 .fcb-left { float: left; }
