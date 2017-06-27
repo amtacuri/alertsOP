@@ -28,6 +28,6 @@ h2 { color: #4d148c; font-size: 16px; font-weight: bold; }
 p { color: #57585A; }
 p, a { color: #57585A; }
 a { text-decoration: underline;  }
-.fcb-country-of-origin { border-left: 1px solid black; float: right; width: 805px; min-height: 600px; }
+.fcb-country-of-origin { border-left: 1px solid black; float: right; width: 795px; min-height: 600px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
 </style>
