@@ -3,7 +3,7 @@
         <div class="fcb-wrap-body">
             <h2>SKUs ordered without Country of Origin (COO)</h2>
             <p>
-            Below are the products in transit to FedEx Cross Border pending Country of Origin review.
+            Below are the products in transit to ___ pending Country of Origin review.
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
@@ -15,7 +15,6 @@
                     <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
                 </div>
             </div>
-            <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
                 :config="table_fees.config"
@@ -156,7 +155,6 @@ export default {
     },
     methods: {
         loadDataTable (val) {
-            // console.log(val)
             this.getData()
         },
         getData (reg) {
@@ -168,9 +166,9 @@ export default {
             axios.get("/static/sku-in-transit.json")
             .then((x) => {
                 this.table_fees.dataStore = x.data.items
-                //   console.log(x.data.countries.all)
                 this.table_fees.fields[6].custom.dataStore = x.data.countries.all
-                this.dataPaginator.totalRows = x.data.total_row;
+                this.dataPaginator.totalRows = x.data.items.length;
+                console.log(this.dataPaginator.totalRows)
                 this.renderPaginator()
             })
         },
@@ -182,7 +180,6 @@ export default {
             this.agreeCertifyModal.show = true
         },
         certifyRows () {
-            // console.log('Certify Coo')
             // console.log(this.affected_tables.table_fees)
             // axios.get("http://customertools.bongous.dev/alerts_functions.php?oper=certified")
             const params = {
@@ -217,7 +214,6 @@ export default {
                 }
 
             }
-            // console.log(this.dataPaginator.pagesPaginator)
         },
         loadPage () {},
         changeInterval(e) {
@@ -300,6 +296,7 @@ a { text-decoration: underline; font-weight: bolder; }
 .fcb-wrap-buttons {
     display: block;
     clear: both;
+    margin-bottom: 50px;
 }
 .fcb-range { display: block; min-height: 70px; border-top: 1px solid #CCC; padding: 10px; }
 .fcb-left { float: left; }
