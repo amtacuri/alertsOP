@@ -3,7 +3,7 @@
         <div class="fcb-wrap-body">
             <h2>SKUs ordered without Country of Origin (COO)</h2>
             <p>
-            Below are the products in transit to FedEx Cross Border pending Country of Origin review.
+            Below are the products in transit to ___ pending Country of Origin review.
             Please certify the Country of Origin for these products. If it is not provided here, these products will be routed
             through the <a href="">Country of Origin (CoO) Assistance Program</a>.
             </p>
@@ -15,7 +15,6 @@
                     <vue-slider ref="slider" v-bind:interval="50" v-bind:max="500" v-bind:show="true" v-bind:tooltip="'always'" v-bind:piecewise="true" v-on:callback="changeInterval($event)"></vue-slider>
                 </div>
             </div>
-            <!-- <range-page v-on:registros="loadDataTable"></range-page> -->
             <div class="">
                 <data-table
                 :config="table_fees.config"
@@ -164,7 +163,8 @@ export default {
             .then((x) => {
                 this.table_fees.dataStore = x.data.items
                 this.table_fees.fields[6].custom.dataStore = x.data.countries.all
-                this.dataPaginator.totalRows = x.data.total_row;
+                this.dataPaginator.totalRows = x.data.items.length;
+                console.log(this.dataPaginator.totalRows)
                 this.renderPaginator()
             })
         },

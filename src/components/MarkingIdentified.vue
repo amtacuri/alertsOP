@@ -3,7 +3,7 @@
         <div class="fcb-wrap-body">
             <h2>Marking not Identified</h2>
             <p>
-                FedEx Cross Border has received your products and uploaded any images of the markings found. Please review
+                ___ has received your products and uploaded any images of the markings found. Please review
                 the images below and certify the Country of Origin for those products. If products are not certified within 2
                 business days, they will be canceled from the associated order.
             </p>
