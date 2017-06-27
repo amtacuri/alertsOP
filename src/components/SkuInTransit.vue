@@ -36,7 +36,7 @@
                 <button class="ui purple button" v-on:click="certifyModal">Certify</button>
             </div>
             <div class="ui dimmer modals page" v-bind:class="{ 'active': agreeCertifyModal.show, 'visible': agreeCertifyModal.show, 'transition': agreeCertifyModal.show }">
-                <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important;">
+                <div class="ui small test modal transition visible active" style="margin-top: -198px; display: block !important; width: 45%;">
                     <div class="ui segment ui center aligned segment ">
                         <div class="header fcb_title ui header">
                             <h4> Please certify checked rows before moving on </h4>

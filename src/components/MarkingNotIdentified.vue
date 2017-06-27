@@ -36,6 +36,6 @@ h1, h2 {   font-weight: normal; }
 h2 { color: #4d148c; font-size: 16px; font-weight: bold; }
 p { color: #57585A; }
 
-.fcb-marking-not-assistance {  border-left: 1px solid black; float: right; width: 805px; }
+.fcb-marking-not-assistance {  border-left: 1px solid black; float: right; width: 795px; }
 .fcb-wrap-body { display: block; padding-left: 20px; }
 </style>
